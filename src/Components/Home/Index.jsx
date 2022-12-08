@@ -1,9 +1,15 @@
 import React from 'react'
+import Hero from './Hero'
+import Slider from './Slider'
 
-const Index = () => {
+const Home = () => {
   return (
-    <div>Index</div>
+    <>
+      <Hero />
+      <Slider />
+      <Slider />
+    </>
   )
 }
 
-export default Index
+export default Home
