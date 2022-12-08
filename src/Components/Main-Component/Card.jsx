@@ -7,9 +7,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   section: {
-    borderBottom: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
+    borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+      }`,
     paddingLeft: theme.spacing.md,
     paddingRight: theme.spacing.md,
     paddingBottom: theme.spacing.md,
@@ -68,7 +67,7 @@ export function BadgeCard({ image, title, description, country, badges }) {
       </Card.Section>
 
       <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }}>
+        <Button radius="md" className='bg-blue-500' style={{ flex: 1 }}>
           Show details
         </Button>
         <ActionIcon variant="default" radius="md" size={36}>
