@@ -71,9 +71,8 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
     padding: `${theme.spacing.md}px ${theme.spacing.md * 2}px`,
     paddingBottom: theme.spacing.xl,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-    }`,
+    borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
+      }`,
   },
 
   hiddenMobile: {
@@ -146,7 +145,7 @@ export function HeaderNav() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box >
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           <MantineLogo size={30} />
