@@ -20,7 +20,7 @@ export const getMovieImage = (movieId) => `${baseUrl}movie/${movieId}/images?api
 export const getMovieRecommendations = (movieId, page = 1) => `${baseUrl}movie/${movieId}/recommendations?api_key=${apiKey}&language=en-US&page=${page}`
 export const getMovieSimilar = (movieId, page = 1) => `${baseUrl}movie/${movieId}/similar?api_key=${apiKey}&language=en-US&page=${page}`
 export const getMovieVideos = (movieId) => `${baseUrl}movie/${movieId}/videos?api_key=${apiKey}&language=en-US`
-export const getTrending = (time = 'day') => `${baseUrl}trending/all/${time}?api_key=${apiKey}`
+export const getTrending = (time = 'day') => `${baseUrl}trending/all/${time}?api_key=${apiKey}` //day || week 
 export const search = (movieName, page = 1) => `${baseUrl}search/movie?api_key=${apiKey}&language=en-US&query=${movieName}&page=${page}&include_adult=false`
 
 //TODO: find by id 
