@@ -1,4 +1,4 @@
-import { Title, Text, Container, Button, Overlay, createStyles } from '@mantine/core';
+import { Title, Text, Container, Button, Overlay, createStyles, TextInput, Loader } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -119,6 +119,9 @@ export default function Hero() {
           <Button className={cx(classes.control, classes.secondaryControl)} size="lg">
             Live demo
           </Button>
+        </div>
+        <div className="flex justify-center mt-10">
+          <TextInput className='w-1/4' placeholder="Movie Name" rightSection={<Loader size="xs" />} />;
         </div>
       </div>
     </div>
