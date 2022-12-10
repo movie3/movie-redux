@@ -20,12 +20,9 @@ import { IconAt,IconAsterisk } from '@tabler/icons';
 import { GoogleIcon } from './GoogleIcon'
 // import Logo from '../asset/movie-logo.png'
 const Login = () => {
+  //TODO: Age is roznameh
   return (
-
-    <div className="container mx-auto px-2 my-24 flex-colo min-h-[62vh]">
-
-
-
+    <div className="container mx-auto pt-10 flex-colo min-h-[72vh]">
       <div className="w-full 2xl:w-2/5 gap-8 flex-colo p-8 sm:p-14 md:w-3/5 bg-dry  rounded-lg border border-border">
         <Group grow mb="md" mt="md">
           <GoogleIcon radius="xl">Google</GoogleIcon>

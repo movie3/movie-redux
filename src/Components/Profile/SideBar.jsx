@@ -56,6 +56,7 @@ function SideBar({ children }) {
   const Hover = ({ isActive }) =>
     isActive ? `${active} ${inActive}` : `${inActive} ${hover}`;
 
+    //TODO: profile for admin and user 
   return (
     <div className="xl:grid grid-cols-8 gap-10 items-start md:py-12 py-6">
       <div className="col-span-2 sticky bg-dry p-6 rounded-md xl:mb-0 mb-5 w-10/12">
