@@ -18,9 +18,10 @@ const Home = () => {
   return (
     <>
       <Hero />
-      {/* <Slider title={'Top Rating'} movies={movies} />
-      <Slider title={'Up Coming '} />
-      <Subscribe /> */}
+      <div className="container">
+        <Slider title={'Top Rated Movies'} type={'top_rated'}/>
+        <Slider title={'Up Coming Movies'} type={'up_coming'}/>
+      </div>
     </>
   )
 }
