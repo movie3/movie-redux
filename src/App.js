@@ -4,11 +4,10 @@ import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import Profile from "./Components/Profile";
 
-
 function App() {
   return (
     <>
-        <Header />
+      <Header />
       <div className="bg-main text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,7 +17,6 @@ function App() {
         </Routes>
         <Footer />
       </div>
-
     </>
   );
 }
