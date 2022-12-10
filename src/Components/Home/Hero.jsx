@@ -6,12 +6,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Button, { OutlineButton } from '../button/Button';
 import Modal, { ModalContent } from '../modal/Modal';
 
-import tmdbApi, { category, movieType } from '../../api/tmdbApi';
-import apiConfig from '../../api/apiConfig';
+import apiConfig from '../../API/apiConfig';
 
 import './style.scss';
 import { useNavigate } from 'react-router-dom';
-import {getPopularMovie , getMovieVideos} from '../../api/index';
+import {getPopularMovie , getMovieVideos} from '../../API/index';
 import axios from 'axios';
 
 const HeroSlide = () => {

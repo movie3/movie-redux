@@ -2,7 +2,7 @@ import { Input } from '@mantine/core'
 import React from 'react'
 import Uploder from '../Main-Component/Uploder'
 import SideBar from './SideBar'
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UserInfo = () => {
   return (
