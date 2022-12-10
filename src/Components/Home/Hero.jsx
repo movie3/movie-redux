@@ -1,129 +1,134 @@
-import { Title, Text, Container, Button, Overlay, createStyles, TextInput, Loader } from '@mantine/core';
+import React, { useState, useEffect, useRef } from 'react';
 
-const useStyles = createStyles((theme) => ({
-  wrapper: {
-    position: 'relative',
-    paddingTop: 180,
-    paddingBottom: 130,
-    backgroundImage:
-      'url(https://images.unsplash.com/photo-1573164713988-8665fc963095?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=980&q=80)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+import SwiperCore, { Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-    '@media (max-width: 520px)': {
-      paddingTop: 80,
-      paddingBottom: 50,
-    },
-  },
+import Button, { OutlineButton } from '../button/Button';
+import Modal, { ModalContent } from '../modal/Modal';
 
-  inner: {
-    position: 'relative',
-    zIndex: 1,
-  },
+import tmdbApi, { category, movieType } from '../../api/tmdbApi';
+import apiConfig from '../../api/apiConfig';
 
-  title: {
-    fontWeight: 800,
-    fontSize: 40,
-    letterSpacing: -1,
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
-    color: theme.white,
-    marginBottom: theme.spacing.xs,
-    textAlign: 'center',
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+import './style.scss';
+import { useNavigate } from 'react-router-dom';
+import {getPopularMovie , getMovieVideos} from '../../api/index';
+import axios from 'axios';
 
-    '@media (max-width: 520px)': {
-      fontSize: 28,
-      textAlign: 'left',
-    },
-  },
+const HeroSlide = () => {
 
-  highlight: {
-    color: theme.colors[theme.primaryColor][4],
-  },
+    SwiperCore.use([Autoplay]);
 
-  description: {
-    color: theme.colors.gray[0],
-    textAlign: 'center',
+    const [movieItems, setMovieItems] = useState([]);
 
-    '@media (max-width: 520px)': {
-      fontSize: theme.fontSizes.md,
-      textAlign: 'left',
-    },
-  },
+    useEffect(() => {
+        const getMovies = async () => {
+            const params = {page: 1}
+            try {
+                // const response = await tmdbApi.getMoviesList(movieType.popular, {params});
+                console.log(getPopularMovie());
+                const response = await axios.get(`${getPopularMovie()}`, {
+                  headers: { 
+                    'Content-Type': 'application/json'
+                  }
+                });
+                setMovieItems(response.data.results.slice(1, 4));
+                // console.log(response.data.results);
+            } catch {
+                console.log('error');
+            }
+        }
+        getMovies();
+    }, []);
 
-  controls: {
-    marginTop: theme.spacing.xl * 1.5,
-    display: 'flex',
-    justifyContent: 'center',
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
-
-    '@media (max-width: 520px)': {
-      flexDirection: 'column',
-    },
-  },
-
-  control: {
-    height: 42,
-    fontSize: theme.fontSizes.md,
-
-    '&:not(:first-of-type)': {
-      marginLeft: theme.spacing.md,
-    },
-
-    '@media (max-width: 520px)': {
-      '&:not(:first-of-type)': {
-        marginTop: theme.spacing.md,
-        marginLeft: 0,
-      },
-    },
-  },
-
-  secondaryControl: {
-    color: theme.white,
-    backgroundColor: 'rgba(255, 255, 255, .4)',
-
-    '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, .45) !important',
-    },
-  },
-}));
-
-export default function Hero() {
-  const { classes, cx } = useStyles();
-
-  return (
-    <div className={classes.wrapper}>
-      <Overlay color="#000" opacity={0.65} zIndex={1} />
-
-      <div className={classes.inner}>
-        <Title className={classes.title}>
-          Automated AI code reviews for{' '}
-          <Text component="span" inherit className={classes.highlight}>
-            any stack
-          </Text>
-        </Title>
-
-        <Container size={640}>
-          <Text size="lg" className={classes.description}>
-            Build more reliable software with AI companion. AI is also trained to detect lazy
-            developers who do nothing and just complain on Twitter.
-          </Text>
-        </Container>
-
-        <div className={classes.controls}>
-          <Button className={classes.control} variant="white" size="lg">
-            Get started
-          </Button>
-          <Button className={cx(classes.control, classes.secondaryControl)} size="lg">
-            Live demo
-          </Button>
+    return (
+        <div className="hero-slide">
+            <Swiper
+                modules={[Autoplay]}
+                grabCursor={true}
+                spaceBetween={0}
+                slidesPerView={1}
+                // autoplay={{delay: 3000}}
+            >
+                {
+                    movieItems.map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {({ isActive }) => (
+                                <HeroSlideItem item={item} className={`${isActive ? 'active' : ''}`} />
+                            )}
+                        </SwiperSlide>
+                    ))
+                }
+            </Swiper>
+            {
+                movieItems.map((item, i) => <TrailerModal key={i} item={item}/>)
+            }
         </div>
-        <div className="flex justify-center mt-10">
-          <TextInput className='w-1/4' placeholder="Movie Name" rightSection={<Loader size="xs" />} />;
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
+
+const HeroSlideItem = props => {
+
+    const navigate = useNavigate();
+
+    const item = props.item;
+
+    const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
+
+    const setModalActive = async () => {
+        const modal = document.querySelector(`#modal_${item.id}`);
+        // const videos = await tmdbApi.getVideos(category.movie, item.id);
+        const videos = await axios.get(getMovieVideos(item.id));
+      console.log(videos);
+        if (videos.data.results.length > 0) {
+            const videSrc = 'https://www.youtube.com/embed/' + videos.data.results[0].key;
+            modal.querySelector('.modal__content > iframe').setAttribute('src', videSrc);
+        } else {
+            modal.querySelector('.modal__content').innerHTML = 'No trailer';
+        }
+        console.log("hiii");
+        modal.classList.toggle('active');
+    }
+
+    return (
+        <div
+            className={`hero-slide__item ${props.className}`}
+            style={{backgroundImage: `url(${background})`}}
+        >
+            <div className="hero-slide__item__content container">
+                <div className="hero-slide__item__content__info">
+                    <h2 className="title">{item.title}</h2>
+                    <div className="overview">{item.overview}</div>
+                    <div className="btns">
+                        <Button onClick={() => navigate('/movie/' + item.id)}>
+                            Watch now
+                        </Button>
+                        <OutlineButton onClick={setModalActive}>
+                            Watch trailer
+                        </OutlineButton>
+                    </div>
+                </div>
+                <div className="hero-slide__item__content__poster">
+                    <img src={apiConfig.w500Image(item.poster_path)} alt="" />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const TrailerModal = props => {
+    const item = props.item;
+
+    const iframeRef = useRef(null);
+
+    const onClose = () => iframeRef.current.setAttribute('src', '');
+
+    return (
+        <Modal active={false} id={`modal_${item.id}`}>
+            <ModalContent onClose={onClose}>
+                <iframe ref={iframeRef} width="100%" height="500px" title="trailer"></iframe>
+            </ModalContent>
+        </Modal>
+    )
+}
+
+export default HeroSlide;
