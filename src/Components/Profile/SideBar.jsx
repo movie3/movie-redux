@@ -30,7 +30,7 @@ function SideBar({ children }) {
     },
     {
       name: "Users",
-      link: "/users",
+      link: "/user",
       icon: FaUsers,
     },
     {
