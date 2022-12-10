@@ -1,53 +1,44 @@
-import { createStyles, Container, Group, ActionIcon } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons';
-import { MantineLogo } from '@mantine/ds';
+import React from 'react';
 
-const useStyles = createStyles((theme) => ({
-  footer: {
-    marginTop: 120,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
-  },
+import './style.scss';
 
-  inner: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: theme.spacing.xl,
-    paddingBottom: theme.spacing.xl,
+import { Link } from 'react-router-dom';
 
-    [theme.fn.smallerThan('xs')]: {
-      flexDirection: 'column',
-    },
-  },
+import bg from '../../assets/footer-bg.jpg';
+import logo from '../../assets/tmovie.png';
 
-  links: {
-    [theme.fn.smallerThan('xs')]: {
-      marginTop: theme.spacing.md,
-    },
-  },
-}));
-
-export function Footer() {
-  const { classes } = useStyles();
-
-  return (
-    <div className={classes.footer}>
-      <Container className={classes.inner}>
-        <MantineLogo size={28} />
-        <Group spacing={0} className={classes.links} position="right" noWrap>
-          <ActionIcon size="lg">
-            <IconBrandTwitter size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandYoutube size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandInstagram size={18} stroke={1.5} />
-          </ActionIcon>
-        </Group>
-      </Container>
-    </div>
-  );
+const Footer = () => {
+    return (
+        <div className="footer" style={{backgroundImage: `url(${bg})`}}>
+            <div className="footer__content container">
+                <div className="footer__content__logo">
+                    <div className="logo">
+                        <img src={logo} alt="" />
+                        <Link to="/">tMovies</Link>
+                    </div>
+                </div>
+                <div className="footer__content__menus">
+                    <div className="footer__content__menu">
+                        <Link to="/">Home</Link>
+                        <Link to="/">Contact us</Link>
+                        <Link to="/">Term of services</Link>
+                        <Link to="/">About us</Link>
+                    </div>
+                    <div className="footer__content__menu">
+                        <Link to="/">Live</Link>
+                        <Link to="/">FAQ</Link>
+                        <Link to="/">Premium</Link>
+                        <Link to="/">Pravacy policy</Link>
+                    </div>
+                    <div className="footer__content__menu">
+                        <Link to="/">You must watch</Link>
+                        <Link to="/">Recent release</Link>
+                        <Link to="/">Top IMDB</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
+
+export default Footer;
