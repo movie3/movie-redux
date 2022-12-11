@@ -18,7 +18,7 @@ const MovieCard = (props) => {
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
 
    return (
-    <>
+    <div>
       <Link to={link}>
         <div className="movie-card" style={{ backgroundImage: `url(${bg})` }}>
           <Button>
@@ -36,9 +36,8 @@ const MovieCard = (props) => {
       <div>
         <h3>{item.title || item.name}</h3>
       </div>
-    </>
+    </div>
   );
 };
-}
 
 export default MovieCard;
