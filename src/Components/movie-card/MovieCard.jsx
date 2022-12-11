@@ -13,11 +13,11 @@ import { FaHeart } from "react-icons/fa";
 const MovieCard = (props) => {
   const item = props.item;
 
-  const link = "/" + category[props.category] + "/" + item.id;
+    const link = '/movie/' + item.id;
 
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
 
-  return (
+   return (
     <>
       <Link to={link}>
         <div className="movie-card" style={{ backgroundImage: `url(${bg})` }}>
@@ -39,5 +39,6 @@ const MovieCard = (props) => {
     </>
   );
 };
+}
 
 export default MovieCard;
