@@ -12,6 +12,7 @@ import { getMovieDetails } from '../../API';
 
 import MovieList from '../movie-list/MovieList';
 import axios from 'axios';
+import MovieRates from './Reviews/Index';
 
 const Detail = () => {
 
@@ -58,9 +59,13 @@ const Detail = () => {
                                 </div>
                             </div>
                         </div>
+
                         <div className="container">
                             <div className="section mb-3">
                                 <VideoList id={item.id}/>
+                            </div>
+                            <div className="section mb-3">
+                              <MovieRates/>
                             </div>
                             <div className="section mb-3">
                                 <div className="section__header mb-2">
