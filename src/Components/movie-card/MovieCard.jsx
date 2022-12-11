@@ -1,21 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import './movie-card.scss';
+import "./movie-card.scss";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Button from '../button/Button';
+import Button from "../button/Button";
 
-import { category } from '../../API/tmdbApi';
-import apiConfig from '../../API/apiConfig';
+import { category } from "../../API/tmdbApi";
+import apiConfig from "../../API/apiConfig";
+import { FaHeart } from "react-icons/fa";
 
-const MovieCard = props => {
+const MovieCard = (props) => {
+  const item = props.item;
 
     const item  = props.item;
 
     const link = '/movie/' + item.id;
 
-    const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+  const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
 
     return (
         <Link to={link}>
@@ -24,7 +26,7 @@ const MovieCard = props => {
                     <i className="bx bx-play"></i>
                 </Button>
             </div>
-            <h3 className='text-lg'>{item.title || item.name}</h3>
+            <h3>{item.title || item.name}</h3>
         </Link>
     );
 }
