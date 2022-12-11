@@ -12,13 +12,14 @@ import Password from "./Components/Profile/Password";
 import UserInfo from "./Components/Profile/UserInfo";
 import ContactUs from "./Components/Contact";
 import AboutUs from "./Components/about";
+import Feed from "./Components/feed/Feed";
 
 
 function App() {
   return (
     <>
-      <Header />
-      <div className="bg-black text-white ">
+      {/* <Header /> */}
+      <div className="bg-blak text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -29,6 +30,7 @@ function App() {
           <Route path="/password" element={<Password />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/feed" element={<Feed/>} />
         </Routes>
         <Footer />
       </div>
