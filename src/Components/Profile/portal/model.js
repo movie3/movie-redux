@@ -11,6 +11,7 @@ const Backdrop = styled.div`
   bottom: 0;
   left: 0;
   background-color: rgba(51, 51, 51, 0.3);
+ 
   backdrop-filter: blur(1px);
   opacity: 0;
   transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,9 +45,8 @@ const Content = styled.div`
   padding: 20px;
   box-sizing: border-box;
   min-height: 50px;
-  min-width: 50px;
   max-height: 80%;
-  max-width: 100%;
+width:50%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background-color: #1a2d5d;
   border-radius: 2px;
