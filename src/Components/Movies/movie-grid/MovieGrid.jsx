@@ -22,7 +22,7 @@ const MovieGrid = props => {
 
     useEffect(() => {
         const getList = async () => {
-            let response = await axios.get(getPopularMovie(page));
+            let response = await axios.get(getPopularMovie(2));
             setItems(response.data.results);
         }
         getList();

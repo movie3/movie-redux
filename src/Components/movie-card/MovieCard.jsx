@@ -13,8 +13,6 @@ import { FaHeart } from "react-icons/fa";
 const MovieCard = (props) => {
   const item = props.item;
 
-    const item  = props.item;
-
     const link = '/movie/' + item.id;
 
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
