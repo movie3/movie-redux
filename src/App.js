@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="bg-main text-white ">
+      <div className="bg-black text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
