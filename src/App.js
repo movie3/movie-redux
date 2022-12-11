@@ -11,6 +11,8 @@ import FavoritesMovies from "./Components/Profile/FavoritesMovies";
 import Password from "./Components/Profile/Password";
 import UserInfo from "./Components/Profile/UserInfo";
 import ContactUs from "./Components/Contact";
+import AboutUs from "./Components/about";
+
 
 function App() {
   return (
@@ -25,7 +27,8 @@ function App() {
           <Route path="/profile" element={<UserInfo />} />
           <Route path="/favorites" element={<FavoritesMovies />} />
           <Route path="/password" element={<Password />} />
-           <Route path="/contact" element={<ContactUs/>} />
+          <Route path="/contact" element={<ContactUs />} />
+           <Route path="/about" element={<AboutUs/>} />
         </Routes>
         <Footer />
       </div>
