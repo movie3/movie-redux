@@ -4,13 +4,15 @@ import { Pagination } from "@mui/material"
 
 import './movie-grid.scss';
 
+import ReactPaginate from 'react-paginate';
+
 import MovieCard from '../../movie-card/MovieCard';
 import Button, { OutlineButton } from '../../button/Button';
 // import Input from '../input/Input'
 
 // import tmdbApi, { category, movieType, tvType } from '../../../api/tmdbApi';
 
-import {getPopularMovie , getSearch} from '../../../API/index'
+import {getPopularMovie , getSearch , getCategory} from '../../../API/index'
 import axios from 'axios';
 import Filter from '../Filter';
 
@@ -32,10 +34,14 @@ const MovieGrid = props => {
     useEffect(() => {
         const getList = async () => {
             let response={};
-            if(search === '') {
+            if(search === '' && filter.category==0) {
                 response = await axios.get(getPopularMovie(page));
-            } else {
+            }
+            else if(search !== ''){
                 response = await axios.get(getSearch(search , page));
+            } 
+            else if(filter.category != 0) {
+                response = await axios.get(getCategory(filter.category));
             }
             setItems(response.data.results);
             setTotalPage(response.data.total_pages);
@@ -60,7 +66,22 @@ const MovieGrid = props => {
     } , [search])
 
     useEffect(()=>{
-        console.log(filter);
+        const getList = async () => {
+            let response = {};
+            if(filter.category==0) {
+                response = await axios.get(getPopularMovie());
+                setPage(1);
+                setSearch('');
+            }
+            else {
+                response = await axios.get(getCategory(filter.category));
+                setPage(1);
+                setSearch('');
+            }
+            setItems(response.data.results);
+            setTotalPage(response.data.total_pages);
+        }
+        getList();
     }, [filter])
 
     return (
