@@ -86,7 +86,6 @@ const HeroSlideItem = props => {
         } else {
             modal.querySelector('.modal__content').innerHTML = 'No trailer';
         }
-        console.log("hiii");
         modal.classList.toggle('active');
     }
 

@@ -25,10 +25,10 @@ const Login = () => {
   //TODO: Age is roznameh
   return (
     <div
-      className=" w-100 pt-10 flex-colo min-h-[95vh] bg-cover backdrop-blur-lg "
+      className=" w-100 pt-10 min-h-[95vh] bg-cover backdrop-blur-lg "
       style={{ backgroundImage: `url(${img})` }}
     >
-      <div className="w-full 2xl:w-2/5 gap-8 flex-colo p-8 sm:p-14 md:w-3/5   rounded-lg border border-border text-center ml-10  mt-8">
+      <div className="w-full 2xl:w-2/5 gap-8 p-8 sm:p-14 md:w-3/5   rounded-lg border border-border text-center ml-10  mt-8">
         <Group grow mb="md" mt="md">
           <GoogleIcon radius="xl">Google</GoogleIcon>
           {/* <TwitterButton radius="xl">Twitter</TwitterButton> */}

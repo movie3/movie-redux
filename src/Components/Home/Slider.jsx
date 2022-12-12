@@ -7,7 +7,7 @@ const Slider = (props) => {
   return (
     <div className="section mb-3">
       <div className="section__header mb-2">
-          <h2>{props.title}</h2>
+          <h2 className='text-3xl'>{props.title}</h2>
           <Link to="/movie">
             <OutlineButton className="small">View more</OutlineButton>
           </Link>
