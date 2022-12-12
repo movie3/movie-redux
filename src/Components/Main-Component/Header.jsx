@@ -5,27 +5,32 @@ import { Link, useLocation } from 'react-router-dom';
 import './style.scss';
 
 import logo from '../../assets/tmovie.png';
+import { useAuthUser, useIsAuthenticated } from 'react-auth-kit';
 
-const headerNav = [
-    {
-        display: 'Home',
-        path: '/'
-    },
-    {
-        display: 'Movies',
-        path: '/movie'
-    },
-    {
-        display: 'Login',
-        path: '/login'
-    },
-    {
-        display: 'Contact',
-        path: '/contact'
-    }
-];
+
 
 const Header = () => {
+    const isAuth = useIsAuthenticated()
+    const user = useAuthUser()
+    console.log(user());
+    const headerNav = [
+        {
+            display: 'Home',
+            path: '/'
+        },
+        {
+            display: 'Movies',
+            path: '/movie'
+        },
+        {
+            display: isAuth() ? user().first_name : 'Login',
+            path: isAuth() ? '/profile' : '/login'
+        },
+        {
+            display: 'Contact',
+            path: '/contact'
+        }
+    ];
 
     const { pathname } = useLocation();
     const headerRef = useRef(null);
