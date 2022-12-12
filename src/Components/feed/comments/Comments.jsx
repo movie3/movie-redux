@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { useContext } from "react";
 // import { AuthContext } from "./authContext";
 // import { comments } from "../../../dummyData";
 import "./comment.css";
+import { useAuthUser, useIsAuthenticated } from 'react-auth-kit';
+import axios from 'axios';
 
 
 
 
-function Comments() {
+function Comments({post_id}) {
     // const { currentUser } = useContext(AuthContext);
+
+    const [comment , setComment] = useState('');
+    const isAuth = useIsAuthenticated()
+    const user = useAuthUser();
+    const handleShare = ()=>{
+      if(comment != '' && isAuth()) {
+        let response = axios.post('http://127.0.0.1:8000/api/addComment' , 
+        {'user_id' : user().id ,
+          'post_id' : post_id ,
+          'comment' : comment 
+        })
+        // console.log(response);
+      }
+    }
+
     const comments = [
     {
       id: 1,

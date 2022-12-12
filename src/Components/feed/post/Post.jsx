@@ -1,22 +1,37 @@
 import "./post.css";
 // import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../../dummyData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Comment, FavoriteBorder, MoreVertOutlined } from "@mui/icons-material";
 import Comments from "../comments/Comments";
+import axios from "axios";
 
 export default function Post({ post }) {
   const [like,setLike] = useState(post.like)
   const [isLiked, setIsLiked] = useState(false)
   const [commentOpen, setCommentOpen] = useState(false);
   // const [color,setColor] = useState("white")
+  const [user , setUser] = useState({});
   
+  async function getUser(id) {
+    let response = await axios.get(`http://127.0.0.1:8000/api/userInfo/${id}`);
+    setUser(response.data);
+  }
+
+  useEffect(()=>{
+    getUser(post.id)
+  },[])
 
   const likeHandler =()=>{
     setLike(isLiked ? like-1 : like+1 )
     setIsLiked(!isLiked)
     // setColor(isLiked ? "white" : "red")
   }
+  // if(true) {
+  //   console.log(post);
+  //   console.log(user);
+  //   return (<h1>Hello</h1>);
+  // }
   return (
     <div className="post">
       <div className="postWrapper">
@@ -24,21 +39,23 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              // src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              src='https://github.com/safak/youtube/blob/react-social-ui/public/assets/person/2.jpeg?raw=true'
               alt=""
             />
             <span className="postUsername">
-              {Users.filter((u) => u.id === post?.userId)[0].username}
+              {/* {Users.filter((u) => u.id === post?.userId)[0].username} */}
+              {user.first_name}
             </span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{new Date(post.created_at).toString()}</span>
           </div>
           <div className="postTopRight">
             <MoreVertOutlined/>
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={post.photo} alt="" />
+          <span className="postText">{post?.post}</span>
+          <img className="postImg" src="https://github.com/safak/youtube/blob/react-social-ui/public/assets/post/1.jpeg?raw=true" alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

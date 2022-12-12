@@ -12,7 +12,6 @@ import { useAuthUser, useIsAuthenticated } from 'react-auth-kit';
 const Header = () => {
     const isAuth = useIsAuthenticated()
     const user = useAuthUser()
-    console.log(user());
     const headerNav = [
         {
             display: 'Home',
