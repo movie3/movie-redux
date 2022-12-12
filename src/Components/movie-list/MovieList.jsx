@@ -63,7 +63,7 @@ const MovieList = props => {
                         }
                         return (
                             <SwiperSlide key={i}>
-                                <MovieCard item={item} category={props.category} isFav={isFav} setRender={setRender} />
+                                <MovieCard item={item} category={props.category} isFav={isFav} setRender={setRender} render={render} />
                             </SwiperSlide>
                         )
                     })
