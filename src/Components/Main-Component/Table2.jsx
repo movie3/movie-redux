@@ -64,7 +64,7 @@ function Table2({ data, users, OnEditFunction }) {
     <div className="overflow-x-scroll overflow-hidden relative w-full ">
       <table className="w-full table-auto border border-border divide-y divide-border">
         <thead>
-          <tr className="bg-subMain">
+          <tr className="bg-oo">
             {users ? (
               <>
                 <th scope="col" className={`${Head}`}>
