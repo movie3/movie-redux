@@ -1,5 +1,5 @@
 import { Input } from '@mantine/core'
-import React from 'react'
+import React, { useState } from 'react'
 import Uploder from '../Main-Component/Uploder'
 import SideBar from './SideBar'
 import Button from '../button/Button'
@@ -7,11 +7,35 @@ import Modal from './portal/model'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuthUser, useIsAuthenticated } from 'react-auth-kit';
 import PageHeader from '../page-header/PageHeader'
+import { NativeSelect, } from "@mantine/core";
+import { IconGenderBigender } from "@tabler/icons";
+import axios from 'axios'
 
+//FIXME: update user information after update  
 const UserInfo = () => {
     const isAuth = useIsAuthenticated()
     const user = useAuthUser()
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const updateData = {
+            user_id: user().id,
+            email: data.get('email'),
+            first_name: data.get('firstName'),
+            last_name: data.get('lastName'),
+            gender: data.get('gender'),
+            age: data.get('age')
+        }
+        console.log(updateData);
+        axios.post('http://127.0.0.1:8000/api/update', updateData)
+            .then(res => {
+                console.log(res.data)
+                //sweet alert
+                setIsOpen(false)
+            }).catch(res => console.log(res))
+    };
+
     return (
         <>
             <PageHeader> Welcome {user().first_name}  {user().last_name}</PageHeader>
@@ -36,7 +60,7 @@ const UserInfo = () => {
                                         </tr>
                                         <tr>
                                             <td class="px-2 py-2 text-white-500 font-semibold text-xl">Gender </td>
-                                            <td class="px-2 py-2 text-lg">{user().gender}</td>
+                                            <td class="px-2 py-2 text-lg">{(user().gender)}</td>
                                         </tr>
                                         <tr>
                                             <td class="px-2 py-2 text-white-500 font-semibold text-xl">Age </td>
@@ -50,7 +74,7 @@ const UserInfo = () => {
                                     <Button onClick={() => { setIsOpen(true); }}> Edit Profile</Button>
                                 </div>
                                 <Modal onClose={() => { setIsOpen(false); }} open={isOpen}>
-                                    <form class=" p-5 w-full">
+                                    <form class=" p-5 w-full" onClick={handleSubmit}>
                                         <div class="mb-4">
                                             <label class="block text-white-700 text-sm font-bold mb-2" for="username">
                                                 First Name
@@ -76,10 +100,20 @@ const UserInfo = () => {
                                             </label>
                                             <input name="age" value={user().age} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Age" />
                                         </div>
+                                        <div class="mb-4">
+                                            <label class="block text-white-700 text-sm font-bold mb-2" for="username">
+                                                Gender
+                                            </label>
+                                            <NativeSelect
+                                                className="my-4"
+                                                data={["Gender", "Male", "Female"]}
+                                                icon={<IconGenderBigender />}
+                                                name="gender" />
+                                        </div>
+                                        <p style={{ textAlign: "center", color: 'black' }}>
+                                            <Button type="submit">Save</Button>
+                                        </p>
                                     </form>
-                                    <p style={{ textAlign: "center", color: 'black' }}>
-                                        <Button>Save</Button>
-                                    </p>
                                 </Modal>
                             </div>
                         </div>

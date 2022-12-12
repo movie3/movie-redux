@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 // import { Movies } from "../../Data/MovieData";
 import Table from "../Main-Component/Table";
+import { useAuthUser } from "react-auth-kit";
+import axios from "axios";
 
 function FavoritesMovies() {
+
+  const user = useAuthUser()
+
+
   const Movies = [
     {
       name: 'Army Of  The Dead',
@@ -149,6 +155,13 @@ function FavoritesMovies() {
       reviews: 6,
     },
   ];
+  const [favoriteMovieId, setFavoriteMovieId] = useState()
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/api/gatfav?user_id=${user().id}`)
+      .then(res => setFavoriteMovieId(res.data))
+      .catch(res => console.log(res))
+  })
+
   return (
     <SideBar>
       <div className="flex flex-col gap-6">
