@@ -30,7 +30,7 @@ function SideBar({ children }) {
     },
     {
       name: "Users",
-      link: "/user",
+      link: "/users",
       icon: FaUsers,
     },
     {
@@ -49,7 +49,7 @@ function SideBar({ children }) {
       icon: RiLockPasswordLine,
     },
   ];
-  const active = "bg-dryGray text-subMain no-underline";
+  const active = "bg-f text-subMain no-underline";
   const hover = "hover:text-white hover:bg-main no-underline text-white";
   const inActive =
     "rounded font-medium text-sm transitions flex gap-3 items-center p-3";
@@ -60,7 +60,7 @@ function SideBar({ children }) {
   return (
     
     <div className="xl:grid grid-cols-8 gap-10 items-start md:py-12 py-6 ">
-      <div className="col-span-2 sticky bg-dry p-6 rounded-md xl:mb-0 mb-5 w-10/12">
+      <div className="col-span-2 sticky bg-dark p-6 rounded-md xl:mb-0 mb-5 w-10/12">
         {
           // SideBar Links
           SideLinks.map((link, index) => (
@@ -75,7 +75,7 @@ function SideBar({ children }) {
         data-aos-duration="1000"
         data-aos-delay="10"
         data-aos-offset="200"
-        className="col-span-6 rounded-md bg-dry p-6 "
+        className="col-span-6 rounded-md bg-grey p-6 "
       >
         {children}
       </div>
