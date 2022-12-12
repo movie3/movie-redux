@@ -1,7 +1,9 @@
 import React from "react";
+import { useIsAuthenticated } from "react-auth-kit";
 import { Link } from "react-router-dom";
 import banner from "../img/device-pile.png";
 const Banner = () => {
+  const isAuth = useIsAuthenticated()
   return (
     <div>
       <div
@@ -20,7 +22,8 @@ const Banner = () => {
             <div class="text-center text-white px-6 md:px-12">
               <h1 class="text-5xl font-bold mt-0 mb-6"></h1>
               <h3 class="text-3xl font-bold mb-8"></h3>
-              <Link to="/Iptv">
+              {isAuth()?(
+                <Link to="/Iptv">
                 <button
                   style={{
                     marginBottom: "50px",
@@ -35,6 +38,24 @@ const Banner = () => {
                   Watch Now
                 </button>
               </Link>
+              ):(
+                <Link to="/login">
+                <button
+                  style={{
+                    marginBottom: "50px",
+                    backgroundColor: "red",
+                    paddingLeft: "20px",
+                  }}
+                  type="button"
+                  class="inline-block px-6 py-2.5 border-2 border-subMain text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out "
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                >
+                  Watch Now
+                </button>
+              </Link>
+              )}
+              
             </div>
           </div>
         </div>
