@@ -5,6 +5,11 @@ export const names = [
     img: "https://scontent.famm10-1.fna.fbcdn.net/v/t39.30808-6/280346957_5088305001216795_4658944949736004277_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=dwwptwTIxpcAX-EF0ct&_nc_ht=scontent.famm10-1.fna&oh=00_AfB2nhhOErQ_pqyRoBkni_dAbGne-lKZuHSTh93lQvFmWA&oe=639B5E1E",
   },
   {
+    name: "mbc drama +",
+    url: "https://shls-mbcplusdrama-prod-dub.shahid.net/out/v1/97ca0ce6fc6142f4b14c0a694af59eab/index.m3u8",
+    img: "https://shahid.mbc.net/mediaObject/Curation_2022/Live_Channels/mbcdrama_poster_chanel/original/mbcdrama_poster_chanel.jpg?height=379.5&width=675&croppingPoint=&version=1&type=webp",
+  },
+  {
     name: "bollywood",
     url: "https://shls-mbcdramaksa-ak.akamaized.net/out/v1/a79c9d7ef2a64a54a64d5c4567b3462a/index.m3u8 ",
     img: "https://news.l0n.news/wp-content/uploads/2022/11/9116173B-DE72-45FB-AF3F-7C879EB766F6-800x500-1-800x500.png",
@@ -38,6 +43,26 @@ export const names = [
     name: "mbc drama",
     url: "https://shls-mbcdramaksa-ak.akamaized.net/out/v1/ce0f0762d89e4394a856c5fd13e43645/index.m3u8",
     img: "https://snackajarni.com/nxj/_nRPialhvxAkJOjynB4nsAHaEc.jpg",
+  },
+  {
+    name: "mbc iraq",
+    url: "https://shls-iraq-prod-dub.shahid.net/out/v1/c9bf1e87ea66478bb20bc5c93c9d41ea/index.m3u8",
+    img: "https://i.imgur.com/5CtT0ck.png",
+  },
+  {
+    name: "mbc persia",
+    url: "https://shls-mbcpersia-prod-dub.shahid.net/out/v1/bdc7cd0d990e4c54808632a52c396946/index.m3u8",
+    img: "https://upload.wikimedia.org/wikipedia/commons/2/24/MBC_Persia.jpg",
+  },
+  {
+    name: "zee aflam",
+    url: "https://weyyak-live.akamaized.net/weyyak_zee_aflam/index.m3u8 ",
+    img: "https://i.imgur.com/O3tRhpO.png",
+  },
+  {
+    name: "zee alwan",
+    url: "https://weyyak-live.akamaized.net/weyyak_zee_alwan/index.m3u8 ",
+    img: "https://i.imgur.com/86fftF6.png",
   },
   {
     name: "cult films",
@@ -78,11 +103,6 @@ export const names = [
     name: "rotana comedy",
     url: "https://rotanastudios-rotanacomedy-1-eu.xiaomi.wurl.tv/playlist.m3u8        ",
     img: "https://blogger.googleusercontent.com/img/a/AVvXsEgL-ogIUiAIwuQ79cerpAV1krXBd18lWQIN4LIfPsVhPyWzpWwu0Ikf-q9pNi0c3Sl1GDiYJYoWaBCDfB1UFAiuelTEvSY5fGtMo5AoMfcc7cJzEimlVGhLpcRVwEsTYdWsSB2wVaMcgJFNAH8sbYt4sTCDsyb-AylHUwk-QSP084AWreWlHDLzMLZQ0Q=s320",
-  },
-  {
-    name: "mbc drama +",
-    url: "https://shls-mbcplusdrama-prod-dub.shahid.net/out/v1/97ca0ce6fc6142f4b14c0a694af59eab/index.m3u8",
-    img: "https://shahid.mbc.net/mediaObject/Curation_2022/Live_Channels/mbcdrama_poster_chanel/original/mbcdrama_poster_chanel.jpg?height=379.5&width=675&croppingPoint=&version=1&type=webp",
   },
 
   {
