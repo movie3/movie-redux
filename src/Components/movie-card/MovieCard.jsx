@@ -27,11 +27,8 @@ const MovieCard = (props) => {
       movie_id: props.item.id
     }
     axios.post('http://127.0.0.1:8000/api/addfav', data).then(res => {
-
       console.log(res.data)
       props.setRender(!props.render)
-
-
     })
   }
   const deleteFav = () => {
@@ -42,7 +39,6 @@ const MovieCard = (props) => {
     axios.post('http://127.0.0.1:8000/api/delfav', data).then(res => {
       console.log(res.data)
       props.setRender(!props.render)
-
     })
   }
 

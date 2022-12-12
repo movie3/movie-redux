@@ -6,6 +6,7 @@ import { useAuthUser } from "react-auth-kit";
 import axios from "axios";
 import { findById } from "../../API";
 
+import  PageHeader  from '../page-header/PageHeader'
 function FavoritesMovies() {
   const [favoriteMovieId, setFavoriteMovieId] = useState()
   const [render, setRender] = useState(false)
@@ -35,18 +36,21 @@ function FavoritesMovies() {
     return <h1>Loading</h1>
   }
   return (
-    <SideBar>
-      <div className="flex flex-col gap-6">
-        <div className="flex-btn gap-2">
-          <h2 className="text-xl font-bold">Favorites Movies</h2>
-          <button className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded">
-            Delete All
-          </button>
-        </div>
+    <>
+      <PageHeader>Favorites Movies</PageHeader>
+      <SideBar>
+        <div className="flex flex-col gap-6">
+          <div className="flex-btn gap-2">
+            <h2 className="text-xl font-bold">Favorites Movies</h2>
+            <button className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded">
+              Delete All
+            </button>
+          </div>
 
-        <Table data={favoriteMovieId} admin={false} render={setRender}/>
-      </div>
-    </SideBar>
+          <Table data={favoriteMovieId} admin={false} render={setRender} />
+        </div>
+      </SideBar>
+    </>
   );
 }
 
