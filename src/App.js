@@ -14,6 +14,7 @@ import Admin from "./Components/Profile/Dashbord/admin";
 import Users from "./Components/Profile/Dashbord/user";
 import ContactUs from "./Components/Contact";
 import AboutUs from "./Components/about";
+import Feed from "./Components/feed/Feed";
 import Iptv from "./Components/iptv/Iptv";
 
 
@@ -21,7 +22,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="bg-black text-white ">
+      <div className="bg-blak text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -36,8 +37,8 @@ function App() {
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/feed" element={<Feed/>} />
           <Route path="/Iptv" element={<Iptv />} />
-
         </Routes>
         <Footer />
       </div>
