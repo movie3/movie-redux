@@ -22,13 +22,18 @@ const Header = () => {
             display: 'Movies',
             path: '/movie'
         },
-        {
-            display: isAuth() ? user().first_name : 'Login',
-            path: isAuth() ? '/profile' : '/login'
-        },
+       
         {
             display: 'Contact',
             path: '/contact'
+        },
+        {
+            display: 'About',
+            path: '/about'
+        },
+         {
+            display: isAuth() ? user().first_name : 'Login',
+            path: isAuth() ? '/profile' : '/login'
         }
     ];
 
