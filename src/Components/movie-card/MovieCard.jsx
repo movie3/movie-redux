@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../button/Button";
 
-import { category } from "../../API/tmdbApi";
+// import { category } from "../../API/tmdbApi";
 import apiConfig from "../../API/apiConfig";
 import { FaHeart } from "react-icons/fa";
 

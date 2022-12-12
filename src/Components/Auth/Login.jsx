@@ -50,7 +50,7 @@ const Login = () => {
             Login
           </Button>
         </div>
-        <p className="text-center text-border">
+        <p className="text-center text-white">
           Don't have an account?{" "}
           <Link to="/register" className="text-dryGray font-semibold ml-2">
             Sign Up

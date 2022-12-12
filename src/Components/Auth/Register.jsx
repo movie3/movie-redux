@@ -76,7 +76,7 @@ const Register = () => {
             </Button>
           </div>
 
-          <p className="text-center text-border">
+          <p className="text-center text-white">
             Have an account?{" "}
             <Link to="/login" className="text-dryGray font-semibold ml-2">
               Login

@@ -50,8 +50,9 @@ const Header = () => {
         <div ref={headerRef} className="header">
             <div className="header__wrap container">
                 <div className="logo">
+                    <h1>B</h1>
                     <img src={logo} alt="" />
-                    <Link to="/">tMovies</Link>
+                    <Link to="/">X OFFICE</Link>
                 </div>
                 <ul className="header__nav">
                     {
