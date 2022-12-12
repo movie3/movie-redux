@@ -31,6 +31,13 @@ const MovieGrid = props => {
 
     });
 
+    useEffect(()=>{
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+    });
+    },[])
+
     useEffect(() => {
         const getList = async () => {
             let response={};

@@ -49,6 +49,7 @@ const Header = () => {
         return () => {
             window.removeEventListener('scroll', shrinkHeader);
         };
+        
     }, []);
 
     return (
