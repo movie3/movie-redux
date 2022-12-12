@@ -17,7 +17,6 @@ import AboutUs from "./Components/about";
 import Feed from "./Components/feed/Feed";
 import Iptv from "./Components/iptv/Iptv";
 
-
 function App() {
   return (
     <>
