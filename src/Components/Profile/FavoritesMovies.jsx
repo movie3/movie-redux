@@ -160,7 +160,7 @@ function FavoritesMovies() {
     axios.get(`http://127.0.0.1:8000/api/gatfav?user_id=${user().id}`)
       .then(res => setFavoriteMovieId(res.data))
       .catch(res => console.log(res))
-  })
+  },[])
 
   return (
     <SideBar>
