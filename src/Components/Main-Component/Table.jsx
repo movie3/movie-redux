@@ -3,25 +3,29 @@ import { FaCloudDownloadAlt, FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GoEye } from "react-icons/go";
+import apiConfig from "../../API/apiConfig";
 
 const Head = "text-xs text-left text-main font-semibold px-6 py-2 uppercase";
 const Text = "text-sm text-left leading-6 whitespace-nowrap px-5 py-3";
 
 // rows
 const Rows = (movie, i, admin) => {
+
+  const bg = apiConfig.w500Image(movie.poster_path || movie.backdrop_path);
+
   return (
     <tr key={i}>
       <td className={`${Text}`}>
         <div className="w-12 p-1 bg-dry border border-border h-12 rounded overflow-hidden">
           <img
             className="h-full w-full object-cover"
-            src={movie.image}
-            alt={movie?.name}
+            src={bg}
+            alt={movie?.title}
           />
         </div>
       </td>
-      <td className={`${Text} truncate`}>{movie.name}</td>
-      <td className={`${Text}`}>{movie.category}</td>
+      <td className={`${Text} truncate`}>{movie.title}</td>
+      <td className={`${Text}`}>{movie.genres[0]?.name}</td>
       <td className={`${Text}`}>{movie.language}</td>
       <td className={`${Text}`}>{movie.year}</td>
       <td className={`${Text}`}>{movie.time}</td>
@@ -37,7 +41,7 @@ const Rows = (movie, i, admin) => {
           </>
         ) : (
           <>
-            <button className="border border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2">
+            <button className="border  border-border bg-dry flex-rows gap-2 text-border rounded py-1 px-2">
               Download <FaCloudDownloadAlt className="text-green-500" />
             </button>
             <Link
@@ -54,7 +58,12 @@ const Rows = (movie, i, admin) => {
 };
 
 // table
-function Table({ data, admin }) {
+function Table({ data, admin, render }) {
+  render(true)
+  console.log(data);
+  if (data == null) {
+    return <h1>Login</h1>
+  }
   return (
     <div className="overflow-x-scroll overflow-hidden relative w-full">
       <table className="w-full table-auto border border-border divide-y divide-border">

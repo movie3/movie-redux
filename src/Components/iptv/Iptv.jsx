@@ -6,9 +6,11 @@ import { names } from "./ch";
 import bg from "../img/bg-c.jpg";
 import { BsCollectionFill } from "react-icons/bs";
 import { Title } from "@mantine/core";
+import PageHeader from "../page-header/PageHeader";
 const Iptv = () => {
   return (
     <>
+      <PageHeader>IPTV</PageHeader>
       <div className="my-16">
         <Title title="TV Movies" Icon={BsCollectionFill} />
         <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
