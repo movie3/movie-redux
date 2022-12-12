@@ -158,9 +158,13 @@ function FavoritesMovies() {
   const [favoriteMovieId, setFavoriteMovieId] = useState()
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/gatfav?user_id=${user().id}`)
-      .then(res => setFavoriteMovieId(res.data))
+      .then(res => {
+        res.data.forEach(movie=>{
+          
+        })
+      })
       .catch(res => console.log(res))
-  },[])
+  }, [])
 
   return (
     <SideBar>

@@ -23,9 +23,7 @@ export const getMovieVideos = (movieId) => `${baseUrl}movie/${movieId}/videos?ap
 export const getMovieCredits = (movieId) => `${baseUrl}movie/${movieId}/credits?api_key=${apiKey}&language=en-US`
 export const getTrending = (time = 'day') => `${baseUrl}trending/all/${time}?api_key=${apiKey}` //day || week 
 export const search = (movieName, page = 1) => `${baseUrl}search/movie?api_key=${apiKey}&language=en-US&query=${movieName}&page=${page}&include_adult=false`
-
-//TODO: find by id 
-
+export const findById = (movieId) => `${baseUrl}/movie/${movieId}?api_key=${apiKey}&language=en-US`
 
 
 
