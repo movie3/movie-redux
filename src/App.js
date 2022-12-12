@@ -18,7 +18,7 @@ import Feed from "./Components/feed/Feed";
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="bg-blak text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
