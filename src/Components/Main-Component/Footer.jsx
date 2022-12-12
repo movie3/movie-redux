@@ -33,7 +33,7 @@ const Footer = () => {
               <Link to="/login">Feedback</Link>
 
             )}
-            <Link to="/">Term of services</Link>
+            <Link to="/about">About</Link>
           </div>
           <div className="footer__content__menu pl-16">
             <Link to="/">Live</Link>
