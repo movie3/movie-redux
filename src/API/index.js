@@ -22,7 +22,7 @@ export const getMovieSimilar = (movieId, page = 1) => `${baseUrl}movie/${movieId
 export const getMovieVideos = (movieId) => `${baseUrl}movie/${movieId}/videos?api_key=${apiKey}&language=en-US`
 export const getMovieCredits = (movieId) => `${baseUrl}movie/${movieId}/credits?api_key=${apiKey}&language=en-US`
 export const getTrending = (time = 'day') => `${baseUrl}trending/all/${time}?api_key=${apiKey}` //day || week 
-export const search = (movieName, page = 1) => `${baseUrl}search/movie?api_key=${apiKey}&language=en-US&query=${movieName}&page=${page}&include_adult=false`
+export const getSearch = (movieName, page = 1) => `${baseUrl}search/movie?api_key=${apiKey}&language=en-US&query=${movieName}&page=${page}&include_adult=false`
 
 //TODO: find by id 
 
