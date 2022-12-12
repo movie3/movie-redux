@@ -1,5 +1,6 @@
 import React from "react";
 import Table2 from "../../Main-Component/Table2";
+import PageHeader from "../../page-header/PageHeader";
 import SideBar from "../SideBar";
 
 // import SideBar from "../SideBar";
@@ -47,12 +48,15 @@ const UsersData = [
 ];
 function Users() {
   return (
-    <SideBar>
-      <div className=" gap-6  ">
-        <h2 className="text-xl font-bold">Users</h2>
-        <Table2 data={UsersData} users={true} />
-      </div>
-    </SideBar>
+    <>
+      <PageHeader></PageHeader>
+      <SideBar>
+        <div className=" gap-6  ">
+          <h2 className="text-xl font-bold">Users</h2>
+          <Table2 data={UsersData} users={true} />
+        </div>
+      </SideBar>
+    </>
   );
 }
 

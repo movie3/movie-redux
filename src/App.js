@@ -16,7 +16,6 @@ import ContactUs from "./Components/Contact";
 import AboutUs from "./Components/about";
 import Iptv from "./Components/iptv/Iptv";
 
-
 function App() {
   return (
     <>
@@ -37,7 +36,6 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/Iptv" element={<Iptv />} />
-
         </Routes>
         <Footer />
       </div>
