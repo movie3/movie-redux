@@ -2,7 +2,7 @@ import Post from "./post/Post";
 import Share from "./share/Share";
 import "./feed.css";
 import { Posts } from "../../dummyData";
-import PageHeader from '../'
+// import PageHeader from '../page-header/PageHeader'
 
 export default function Feed() {
   return (
