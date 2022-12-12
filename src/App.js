@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Footer, Header, Home } from "./Components";
+import { Footer, Header, Home, MovieDetails, Movies } from "./Components";
 
 import "swiper/swiper.min.css";
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
@@ -28,6 +28,8 @@ function App() {
           <Route path="/profile" element={<UserInfo />} />
           <Route path="/favorites" element={<FavoritesMovies />} />
           <Route path="/password" element={<Password />} />
+          <Route path="/movie" element={<Movies />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/feed" element={<Feed/>} />
