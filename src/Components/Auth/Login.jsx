@@ -15,12 +15,17 @@ import { GoogleIcon } from "./GoogleIcon";
 import { useSignIn } from "react-auth-kit";
 import axios from "axios";
 const Login = () => {
+  // state is valid data 
   const [valid, setValid] = useState(null)
+  // hook from auth kit 
   const signIn = useSignIn()
+  // to redirecte to home 
   const navigate = useNavigate()
 
+  // handle submit form 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // get data from form 
     const data = new FormData(event.currentTarget);
     const loginData = {
       email: data.get('email'),
@@ -31,22 +36,29 @@ const Login = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
-    axios.post('http://127.0.0.1:8000/api/login', loginData).then(res => {
+    // send post request to server with user login data  
+    axios.post('http://127.0.0.1:8000/api/login', loginData)
+    .then(res => {
       console.log(res.data);
+      // 
       if (signIn({
+        // token for auth 
         token: res.data.token,
         expiresIn: 10000,
         tokenType: "Bearer",
+        // user data information 
         authState: res.data.user_info
       })) {
+        // after login in navigate to home page 
         return navigate('/')
       }
+      // yo catch error form server 
     }).catch(res => {
+      // set error information 
       setValid(res.response.data)
       console.log(res.response.data);
     })
   };
-  //TODO: Age is roznameh
   return (
     <div
       className=" w-100 pt-10 min-h-[110vh] bg-cover backdrop-blur-lg "
@@ -58,13 +70,14 @@ const Login = () => {
           <GoogleIcon radius="xl">Google</GoogleIcon>
           {/* <TwitterButton radius="xl">Twitter</TwitterButton> */}
         </Group>
+        {/* call handelsubmit on click login button   */}
         <form onSubmit={handleSubmit}>
           <Divider
             label="Or continue with email"
             labelPosition="center"
             my="lg"
           />
-
+          {/*                                                                                          print valid message */}
           <p className="text-red-500 bg-black bg-opacity-50 rounded-lg text-center font-bold text-lg">{valid?.message}</p>
           <Input className="my-4" icon={<MdEmail />} placeholder="Your email" name="email" />
           <PasswordInput icon={<MdPassword />} placeholder="Your Password" name="password" />
@@ -79,6 +92,7 @@ const Login = () => {
           </div>
         </form>
         <p className="text-center text-border">
+        {/* navigate to signup */}
           Don't have an account?{" "}
           <Link to="/register" className="text-dryGray font-semibold ml-2">
             Sign Up

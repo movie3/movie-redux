@@ -37,6 +37,7 @@ const Register = () => {
       gender: data.get('gender'),
       age: data.get('age')
     }
+    
     axios.post('http://127.0.0.1:8000/api/register', signupData).then(res => {
       console.log(res.data);
       if (signIn({
