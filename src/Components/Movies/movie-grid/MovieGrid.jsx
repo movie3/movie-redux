@@ -39,6 +39,10 @@ const MovieGrid = props => {
     },[])
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+      });
         const getList = async () => {
             let response={};
             if(search === '' && filter.category==0) {
