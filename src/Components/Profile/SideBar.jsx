@@ -59,8 +59,8 @@ function SideBar({ children }) {
   //TODO: profile for admin and user
   return (
     
-    <div className="xl:grid grid-cols-8 gap-10 items-start md:py-12 py-6 ">
-      <div className="col-span-2 sticky bg-dark p-6 rounded-md xl:mb-0 mb-5 w-10/12">
+    <div className="xl:grid grid-cols-8 gap-10 items-start md:py-12 py-6  ">
+      <div className="col-span-2 sticky bg-dark p-6 rounded-md xl:mb-0 mb-5 border shadow-white w-10/12">
         {
           // SideBar Links
           SideLinks.map((link, index) => (
