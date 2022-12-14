@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
 import { MdEmail, MdPassword } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,6 +21,13 @@ const Login = () => {
   const signIn = useSignIn()
   // to redirecte to home 
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
 
   // handle submit form 
   const handleSubmit = (event) => {

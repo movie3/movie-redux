@@ -55,7 +55,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.post}</span>
-          <img className="postImg" src="https://github.com/safak/youtube/blob/react-social-ui/public/assets/post/1.jpeg?raw=true" alt="" />
+          {/* <img className="postImg" src="https://github.com/safak/youtube/blob/react-social-ui/public/assets/post/1.jpeg?raw=true" alt="" /> */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
@@ -76,7 +76,7 @@ export default function Post({ post }) {
             </div>
           </div>
         </div>
-             {commentOpen && <Comments />}
+             {commentOpen && <Comments post_id={post.id}/>}
       </div>
     </div>
   );

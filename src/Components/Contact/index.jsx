@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiPhoneCall, FiMapPin, FiMail } from 'react-icons/fi';
 import Head from '../Contact/Head';
 // import Layout from '../Layout/Layout';
@@ -27,6 +27,12 @@ function ContactUs() {
       contact: '',
     },
   ];
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
   return (
     <div>
       <div className="min-height-screen container mx-auto px-2 my-6">
