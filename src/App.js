@@ -17,7 +17,7 @@ import Google from "./Components/Auth/google/Google.jsx";
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="bg-blak text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -28,11 +28,11 @@ function App() {
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/feed" element={<Feed/>} />
+          <Route path="/feed" element={<Feed />} />
           <Route path="/Iptv" element={<Iptv />} />
-          <Route path="/google" element={<Google/>}/>
+          <Route path="/google" element={<Google />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

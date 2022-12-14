@@ -19,8 +19,9 @@ const Footer = () => {
       <div className="footer__content container ">
         <div className="footer__content__logo mb-3">
           <div className="logo  ">
+            B
             <img src={logo} alt="" />
-            <Link to="/">tMovies</Link>
+            <Link to="/">X OFFICE</Link>
           </div>
         </div>
         <div className="footer__content__menus pl-16 ">

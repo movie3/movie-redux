@@ -40,17 +40,16 @@ function MovieRates({ id }) {
                 <img
                   src={authorAvatar(author.author_details.avatar_path)}
                   alt='Author'
-                  className="w-full  rounded-lg object-cover"
+                  className="w-full h-full  rounded-lg object-cover"
                 />
               </div>
               <div className="col-span-7 flex flex-col gap-2">
                 <h2>{author?.author_details.name}</h2>
-                <p className="text-xs leading-6 font-medium text-text">
+                <p className="text-xs leading-6 font-medium text-text overflow-clip h-52">
                   {author?.content}
                 </p>
               </div>
               {/* rates */}
-              {console.log((author?.author_details))}
               <div className="col-span-3 flex-rows border-l border-border text-xs gap-1 text-star">
                 <Rating value={Number(author?.author_details.rating/2)} />
               </div>

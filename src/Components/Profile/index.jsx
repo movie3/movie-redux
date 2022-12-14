@@ -26,7 +26,12 @@ const Profile = () => {
     const [comment, setComment] = useState()
     const [Post, setPost] = useState(0)
     let moviesArr = []
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, [])
     const getUserCommentAndPost = () => {
         axios.get(`http://127.0.0.1:8000/api/getUserComments/${user?.id}`)
             .then(res => {
