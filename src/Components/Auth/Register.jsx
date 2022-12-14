@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-// import { Input } from "../Main-Component/UsedInputs";
 import { useDisclosure } from "@mantine/hooks";
 import img from "../img/bg-c.jpg";
 import {
@@ -15,7 +14,7 @@ import {
 import { Input } from "@mantine/core";
 import { IconGenderBigender } from "@tabler/icons";
 import { GoogleIcon } from "./GoogleIcon";
-import { MdAir, MdEmail, MdPassword, MdPerson } from "react-icons/md";
+import {  MdEmail, MdPassword, MdPerson } from "react-icons/md";
 import { FcCalendar } from "react-icons/fc";
 import axios from "axios";
 import { useSignIn } from "react-auth-kit";
@@ -32,7 +31,6 @@ const Register = () => {
   });
   },[])
 
-  //TODO: validate password
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

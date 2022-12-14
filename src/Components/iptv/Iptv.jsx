@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { SwiperSlide } from "swiper/react";
 
 import { names } from "./ch";
-import bg from "../img/bg-c.jpg";
 import { BsCollectionFill } from "react-icons/bs";
 import { Title } from "@mantine/core";
 import PageHeader from "../page-header/PageHeader";

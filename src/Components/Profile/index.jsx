@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useEffect, useRef, useState } from 'react'
-import { useAuthUser, useSignIn } from 'react-auth-kit';
+import { useAuthUser } from 'react-auth-kit';
 import { SwiperSlide, Swiper } from "swiper/react";
 import { findById } from '../../API';
 import MovieCard from '../movie-card/MovieCard';
@@ -9,27 +9,17 @@ import { storage } from './firebase';
 import "../movie-list/movie-list.scss";
 import { Input, Modal, Button, NumberInput, NativeSelect, Select } from '@mantine/core';
 import { MdEmail, MdPerson } from 'react-icons/md';
-import { useDisclosure } from '@mantine/hooks';
-import { useNavigate } from 'react-router-dom';
 import { FiRefreshCcw } from 'react-icons/fi';
-import { Table } from '@mantine/core';
 
 
-//TODO: get user info 
-//TODO: get user fav 
-//TODO: edit user info  
 
 const Profile = () => {
     const [favForUser, setFaveForUser] = useState([]);
-    const [visible, { toggle }] = useDisclosure(false);
-    const [valid, setValid] = useState()
-    const signIn = useSignIn()
-    const navigate = useNavigate()
+
     const [imgUrl, setImgUrl] = useState(null);
     const [progresspercent, setProgresspercent] = useState(0);
     const inputRef = useRef(null);
     const [favoriteMovieId, setFavoriteMovieId] = useState()
-    const [render, setRender] = useState(false)
     const userAuth = useAuthUser()
     const [user, setUser] = useState()
     const [opened, setOpened] = useState(false);
@@ -156,7 +146,6 @@ const Profile = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // data.append('user_id', userAuth().id);
         const update = {
             user_id: userAuth().id,
             first_name: data.get('firstName'),
@@ -177,14 +166,6 @@ const Profile = () => {
                 console.log(res);
             })
     }
-
-    const elements = [
-        { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
-        { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-        { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-        { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
-        { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
-    ];
 
     return (
         <div>
@@ -230,7 +211,6 @@ const Profile = () => {
                                             >
                                                 <div className="w-full rounded-lg text-center bg-gray-900 text-white p-1 shadow-2xl">
                                                     <form className='bg-gray-900 text-white' onSubmit={handleSubmit}>
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.first_name} {valid?.errors?.last_name}</p>
                                                         <div className="flex justify-between">
                                                             <Input
                                                                 className="my-4 bg-slate-400"
@@ -247,7 +227,6 @@ const Profile = () => {
                                                                 defaultValue={user?.last_name}
                                                             />
                                                         </div>
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.email}</p>
                                                         <Input
                                                             className="my-4 bg-slate-400"
                                                             icon={<MdEmail />}
@@ -255,7 +234,6 @@ const Profile = () => {
                                                             name="email"
                                                             defaultValue={user?.email}
                                                         />
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.age}</p>
 
                                                         <NumberInput
                                                             className="my-4"
@@ -263,7 +241,6 @@ const Profile = () => {
                                                             placeholder="Your age"
                                                             name="age"
                                                         />
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.gender}</p>
 
                                                         <Select
                                                             className="my-4"

@@ -7,7 +7,6 @@ import "./App.scss";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import Profile from "./Components/Profile";
-import FavoritesMovies from "./Components/Profile/FavoritesMovies";
 import ContactUs from "./Components/Contact";
 import AboutUs from "./Components/about";
 import Feed from "./Components/feed/Feed";
@@ -23,7 +22,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user" element={<Profile />} />
-          <Route path="/favorites" element={<FavoritesMovies />} />
           <Route path="/movie" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/contact" element={<ContactUs />} />
