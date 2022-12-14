@@ -22,6 +22,7 @@ const Login = () => {
   // to redirecte to home 
   const navigate = useNavigate()
 
+
   useEffect(()=>{
     window.scrollTo({
       top: 0,
@@ -29,7 +30,9 @@ const Login = () => {
   });
   },[])
 
+
   // handle submit form 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // get data from form 
@@ -92,7 +95,7 @@ const Login = () => {
             <Button
               type="submit"
               className="bg-subMain transitions hover:bg-main rounded-lg w-1/2 my-3"
-              rightIcon={<FiLogIn />}
+              
             >
               Login
             </Button>
@@ -100,9 +103,10 @@ const Login = () => {
         </form>
         <p className="text-center text-border">
         {/* navigate to signup */}
-          Don't have an account?{" "}
+
+         
           <Link to="/register" className="text-dryGray font-semibold ml-2">
-            Sign Up
+            Don't have an account?
           </Link>
         </p>
       </div>
