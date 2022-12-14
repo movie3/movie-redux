@@ -72,10 +72,6 @@ const MovieCard = (props) => {
           <div>
             <h3>{item.title || item.name}</h3>
           </div>
-
-
-
-
         </>
       ) : (
         <>
