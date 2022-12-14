@@ -16,11 +16,13 @@ import ContactUs from "./Components/Contact";
 import AboutUs from "./Components/about";
 import Feed from "./Components/feed/Feed";
 import Iptv from "./Components/iptv/Iptv";
+import Google from "./Components/Auth/google/Google.jsx";
+
 
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="bg-blak text-white ">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -38,8 +40,9 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/feed" element={<Feed/>} />
           <Route path="/Iptv" element={<Iptv />} />
+          <Route path="/google" element={<Google/>}/>
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

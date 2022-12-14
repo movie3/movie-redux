@@ -33,7 +33,7 @@ export default function Feed() {
   return (
     <>
     <PageHeader>
-        Feed
+        Post your feedback !
     </PageHeader>
     <div className="feed">
       <div className="feedWrapper">

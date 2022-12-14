@@ -95,7 +95,7 @@ const Login = () => {
             <Button
               type="submit"
               className="bg-subMain transitions hover:bg-main rounded-lg w-1/2 my-3"
-              rightIcon={<FiLogIn />}
+              
             >
               Login
             </Button>
@@ -103,9 +103,9 @@ const Login = () => {
         </form>
         <p className="text-center text-border">
         {/* navigate to signup */}
-          Don't have an account?{" "}
+          
           <Link to="/register" className="text-dryGray font-semibold ml-2">
-            Sign Up
+            Don't have an account?
           </Link>
         </p>
       </div>
