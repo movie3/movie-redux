@@ -2,21 +2,16 @@ import axios from 'axios';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useEffect, useRef, useState } from 'react'
 import { useAuthUser, useSignIn } from 'react-auth-kit';
-import { IconGenderBigender } from "@tabler/icons";
-
 import { SwiperSlide, Swiper } from "swiper/react";
 import { findById } from '../../API';
 import MovieCard from '../movie-card/MovieCard';
 import { storage } from './firebase';
-import SideBar from './SideBar'
 import "../movie-list/movie-list.scss";
-import { BsMailbox } from 'react-icons/bs';
-import { Group, Input, Modal, Button, PasswordInput, NumberInput, NativeSelect, Select } from '@mantine/core';
-import { MdEmail, MdPassword, MdPerson } from 'react-icons/md';
+import { Input, Modal, Button, NumberInput, NativeSelect, Select } from '@mantine/core';
+import { MdEmail, MdPerson } from 'react-icons/md';
 import { useDisclosure } from '@mantine/hooks';
 import { useNavigate } from 'react-router-dom';
-import { FcCalendar } from 'react-icons/fc';
-import { FiLogIn, FiRefreshCcw } from 'react-icons/fi';
+import { FiRefreshCcw } from 'react-icons/fi';
 
 //TODO: get user info 
 //TODO: get user fav 
@@ -33,10 +28,39 @@ const Profile = () => {
     const inputRef = useRef(null);
     const [favoriteMovieId, setFavoriteMovieId] = useState()
     const [render, setRender] = useState(false)
-    const user = useAuthUser()
+    const userAuth = useAuthUser()
+    const [user, setUser] = useState()
     const [opened, setOpened] = useState(false);
-
+    const [comment, setComment] = useState(0)
+    const [Post, setPost] = useState(0)
     let moviesArr = []
+
+    const getUserCommentAndPost = () => {
+        axios.get(`http://127.0.0.1:8000/api/getUserComments/${user?.id}`)
+            .then(res => {
+                console.log(res.data);
+                setComment(res.data);
+            }).catch(res => console.log(res))
+
+        axios.get(`http://127.0.0.1:8000/api/getUserPost/${user?.id}`)
+            .then(res => {
+                console.log(res.data);
+                setPost(res.data);
+            }).catch(res => console.log(res))
+    }
+
+    const getUserInfo = () => {
+        axios.get(`http://127.0.0.1:8000/api/getUserInfo/${userAuth()?.id}`)
+            .then(res => {
+                console.log(res.data);
+                setUser(res.data);
+                setImgUrl(res.data.user_img)
+            }).catch(res => console.log(res))
+    }
+
+    useEffect(() => {
+        getUserInfo()
+    }, [])
 
     async function getFavMovieFromApi(movies) {
         await movies.forEach(element => {
@@ -48,15 +72,16 @@ const Profile = () => {
         console.log(moviesArr);
     }
     async function getFromDatabase() {
-        let response = await axios.get(`http://127.0.0.1:8000/api/gatfav?user_id=${user().id}`)
+        let response = await axios.get(`http://127.0.0.1:8000/api/gatfav?user_id=${user?.id}`)
         getFavMovieFromApi(response.data);
     }
     useEffect(() => {
         console.log('render ');
         getFromDatabase()
         getFavForUser()
+        getUserCommentAndPost()
         //  console.log(movieIds);
-    }, [])
+    }, [user])
     const handleClick = () => {
         // 👇️ open file input box on click of other element
         inputRef.current.click();
@@ -64,7 +89,7 @@ const Profile = () => {
     const getFavForUser = () => {
         let favArr = [];
         axios
-            .get(`http://127.0.0.1:8000/api/gatfav?user_id=${user()?.id}`)
+            .get(`http://127.0.0.1:8000/api/gatfav?user_id=${user?.id}`)
             .then((res) => {
                 // setFaveForUser(res.data)
                 res.data.forEach((movie) => {
@@ -108,6 +133,7 @@ const Profile = () => {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setImgUrl(downloadURL)
+                    updateUserImg(downloadURL)
                     console.log(downloadURL);
                     //TODO: save url to database
                 });
@@ -115,7 +141,15 @@ const Profile = () => {
         );
 
     }
+    const updateUserImg = (downloadURL) => {
+        axios.post(`http://127.0.0.1:8000/api/updateUserImg`, { user_id: user.id, user_img: downloadURL })
+            .then(res => {
+                console.log(res);
 
+            }).catch(res => {
+                console.log(res);
+            })
+    }
     return (
         <div>
             {/* component */}
@@ -143,8 +177,7 @@ const Profile = () => {
                                             <button onClick={e => setOpened(true)} className="bg-blue-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                                                 Edit
                                             </button>
-                                            <Modal 
-                                           
+                                            <Modal
                                                 overlayBlur={0.1}
                                                 size="lg"
                                                 opened={opened}
@@ -152,7 +185,6 @@ const Profile = () => {
                                                 title="Edit Profile"
                                             >
                                                 <div className="w-full rounded-lg text-center">
-
                                                     <form>
                                                         <p className="text-start text-red-500 text-sm"> {valid?.errors?.first_name} {valid?.errors?.last_name}</p>
                                                         <div className="flex justify-between">
@@ -161,14 +193,14 @@ const Profile = () => {
                                                                 icon={<MdPerson />}
                                                                 placeholder="First Name"
                                                                 name="firstName"
-                                                                defaultValue={user().first_name}
+                                                                defaultValue={user?.first_name}
                                                             />
                                                             <Input
                                                                 className="my-4 bg-slate-400"
                                                                 icon={<MdPerson />}
                                                                 placeholder="Last Name"
                                                                 name="lastName"
-                                                                defaultValue={user().last_name}
+                                                                defaultValue={user?.last_name}
                                                             />
                                                         </div>
                                                         <p className="text-start text-red-500 text-sm"> {valid?.errors?.email}</p>
@@ -177,13 +209,13 @@ const Profile = () => {
                                                             icon={<MdEmail />}
                                                             placeholder="Your email"
                                                             name="email"
-                                                            defaultValue={user().email}
+                                                            defaultValue={user?.email}
                                                         />
                                                         <p className="text-start text-red-500 text-sm"> {valid?.errors?.age}</p>
 
                                                         <NumberInput
                                                             className="my-4"
-                                                            defaultValue={Number(user().age)}
+                                                            defaultValue={Number(user?.age)}
                                                             placeholder="Your age"
                                                             name="age"
                                                         />
@@ -192,10 +224,10 @@ const Profile = () => {
                                                         <Select
                                                             className="my-4"
                                                             data={["Gender", "Male", "Female"]}
-                                                         
+
                                                             name="gender"
-                                                            defaultValue={user().gender}
-                                                            
+                                                            defaultValue={user?.gender}
+
                                                         />
                                                         <div className="flex justify-center">
                                                             <Button
@@ -203,39 +235,39 @@ const Profile = () => {
                                                                 className="bg-subMain transitions hover:bg-main rounded-lg w-1/2 my-3"
                                                                 rightIcon={<FiRefreshCcw />}
                                                             >
-                                                                Update 
+                                                                Update
                                                             </Button>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </Modal>
 
-                      
+
                                         </div>
                                     </div>
                                     <div className="w-full lg:w-4/12 px-4 lg:order-1">
                                         <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                             <div className="mr-4 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">10</span><span className="text-sm text-blueGray-400">Post</span>
+                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{Post.length}</span><span className="text-sm text-blueGray-400">Post</span>
                                             </div>
                                             <div className="lg:mr-4 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">89</span><span className="text-sm text-blueGray-400">Comments</span>
+                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{comment.length}</span><span className="text-sm text-blueGray-400">Comments</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="text-center mt-12">
                                     <h3 className="text-4xl font-semibold leading-normal text-blueGray-400 mb-2">
-                                        {user().first_name + " " + user().last_name}
+                                        {user?.first_name + " " + user?.last_name}
                                     </h3>
                                     <div className="text-sm leading-normal mt-0 mb-2 font-bold ">
-                                        Email : {user().email}
+                                        Email : {user?.email}
                                     </div>
                                     <div className="text-sm leading-normal mt-0 mb-2 font-bold ">
-                                        Gender: {user().gender}
+                                        Gender: {user?.gender}
                                     </div>
                                     <div className="text-sm leading-normal mt-0 mb-2 font-bold ">
-                                        Age: {user().age}
+                                        Age: {user?.age}
                                     </div>
                                 </div>
                                 <div className="movie-list my-5">
@@ -252,7 +284,7 @@ const Profile = () => {
                                                         item={item}
                                                         isFav={isFav}
                                                         setRender={setRender}
-                                                        render={render}
+                                                        
                                                     />
                                                 </SwiperSlide>
                                             );
