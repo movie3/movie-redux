@@ -10,6 +10,10 @@ const Home = () => {
   const [movies, setMovies] = useState();
   useEffect(() => {
     // axios.get(getPopularMovie()).then(res => setMovies(res.data.results))
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
   }, []);
   // if (movies == null) {
   //   return <h1>loading..... </h1>

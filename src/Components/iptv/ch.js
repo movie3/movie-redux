@@ -27,7 +27,7 @@ export const names = [
   {
     name: "mbc 3",
     url: "https://shls-mbc3-eur-prod-dub.shahid.net/out/v1/fce09dd6a967431a871efb3b8dec9f82/index.m3u8",
-    img: "https://play-lh.googleusercontent.com/YDZ_BOvxvSn42VUhISTSqUcbzAvttkTQUU8AB3cYwXdPltvn15I-sGz72gmVuDlK9Q",
+    img: "https://shahid.mbc.net/_next/image?url=https%3A%2F%2Fshahid.mbc.net%2FmediaObject%2FWaseem%2FStories0%2Fmbc-3-logo%2Foriginal%2Fmbc-3-logo.png%3Fheight%3Dauto%26width%3D288%26croppingPoint%3D%26version%3D1%26type%3Dwebp&w=1440&q=75",
   },
   {
     name: "mbc 4",

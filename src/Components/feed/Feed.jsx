@@ -21,6 +21,13 @@ export default function Feed() {
     getPosts();
   },[])
 
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
+
   // console.log(render);
   
   return (

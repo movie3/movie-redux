@@ -1,10 +1,11 @@
 import React from 'react'
 import PageHeader from '../page-header/PageHeader'
 import MovieGrid from './movie-grid/MovieGrid'
-import { Pagination } from "@mui/material";
+// import { Pagination } from "@mui/material";
 
 
 const index = () => {
+
   return (
     <>
     <PageHeader>

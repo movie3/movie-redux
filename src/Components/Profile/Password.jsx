@@ -1,10 +1,21 @@
 import { Input } from "@mantine/core";
-import React from "react";
+import React, { useEffect } from "react";
+import PageHeader from "../page-header/PageHeader";
 // import { Input } from "../../Components/UsedInputs";
 import SideBar from "./SideBar";
 
 function Password() {
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
+
   return (
+    <>
+    <PageHeader>Change Password</PageHeader>
     <SideBar>
       <div className="flex flex-col gap-6">
         <h2 className="text-xl font-bold">Change Password</h2>
@@ -33,6 +44,7 @@ function Password() {
         </div>
       </div>
     </SideBar>
+    </>
   );
 }
 

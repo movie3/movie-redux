@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaRegListAlt, FaUser } from "react-icons/fa";
 
 import { HiViewGridAdd } from "react-icons/hi";
@@ -8,6 +8,12 @@ import SideBar from "../SideBar";
 import Table from "../../Main-Component/Table";
 
 function Dashboard() {
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
   const Movies = [
     {
       name: "Army Of  The Dead",

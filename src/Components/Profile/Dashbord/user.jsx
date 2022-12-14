@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Table2 from "../../Main-Component/Table2";
 import PageHeader from "../../page-header/PageHeader";
 import SideBar from "../SideBar";
@@ -47,6 +47,13 @@ const UsersData = [
   },
 ];
 function Users() {
+  
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
   return (
     <>
       <PageHeader></PageHeader>

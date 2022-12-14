@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 // import { Input } from "../Main-Component/UsedInputs";
@@ -24,6 +24,14 @@ const Register = () => {
   const [valid, setValid] = useState()
   const signIn = useSignIn()
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
+
   //TODO: validate password
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -13,6 +13,12 @@ function FavoritesMovies() {
 
   const user = useAuthUser()
   let moviesArr = []
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+  });
+  },[])
 
   async function getFavMovieFromApi(movies) {
     await movies.forEach(element => {
@@ -27,6 +33,7 @@ function FavoritesMovies() {
     getFavMovieFromApi(response.data);
   }
   useEffect(() => {
+    
     console.log('render ');
     getFromDatabase()
     //  console.log(movieIds);
