@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import "./movie-card.scss";
-
 import { Link } from "react-router-dom";
-
 import Button from "../button/Button";
-
 import apiConfig from "../../API/apiConfig";
 import { FaHeart } from "react-icons/fa";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FavoritesMovies from "../Profile/FavoritesMovies";
 
 const MovieCard = (props) => {
   const isAuth = useIsAuthenticated()

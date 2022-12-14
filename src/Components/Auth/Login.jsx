@@ -103,7 +103,8 @@ const Login = () => {
         </form>
         <p className="text-center text-border">
         {/* navigate to signup */}
-          
+
+         
           <Link to="/register" className="text-dryGray font-semibold ml-2">
             Don't have an account?
           </Link>
