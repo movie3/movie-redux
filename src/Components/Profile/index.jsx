@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useEffect, useRef, useState } from 'react'
-import { useAuthUser, useSignIn } from 'react-auth-kit';
+import { useAuthUser } from 'react-auth-kit';
 import { SwiperSlide, Swiper } from "swiper/react";
 import { findById } from '../../API';
 import MovieCard from '../movie-card/MovieCard';
@@ -9,32 +9,29 @@ import { storage } from './firebase';
 import "../movie-list/movie-list.scss";
 import { Input, Modal, Button, NumberInput, NativeSelect, Select } from '@mantine/core';
 import { MdEmail, MdPerson } from 'react-icons/md';
-import { useDisclosure } from '@mantine/hooks';
-import { useNavigate } from 'react-router-dom';
 import { FiRefreshCcw } from 'react-icons/fi';
 
-//TODO: get user info 
-//TODO: get user fav 
-//TODO: edit user info  
+
 
 const Profile = () => {
     const [favForUser, setFaveForUser] = useState([]);
-    const [visible, { toggle }] = useDisclosure(false);
-    const [valid, setValid] = useState()
-    const signIn = useSignIn()
-    const navigate = useNavigate()
+
     const [imgUrl, setImgUrl] = useState(null);
     const [progresspercent, setProgresspercent] = useState(0);
     const inputRef = useRef(null);
     const [favoriteMovieId, setFavoriteMovieId] = useState()
-    const [render, setRender] = useState(false)
     const userAuth = useAuthUser()
     const [user, setUser] = useState()
     const [opened, setOpened] = useState(false);
-    const [comment, setComment] = useState(0)
+    const [comment, setComment] = useState()
     const [Post, setPost] = useState(0)
     let moviesArr = []
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, [])
     const getUserCommentAndPost = () => {
         axios.get(`http://127.0.0.1:8000/api/getUserComments/${user?.id}`)
             .then(res => {
@@ -150,6 +147,31 @@ const Profile = () => {
                 console.log(res);
             })
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const update = {
+            user_id: userAuth().id,
+            first_name: data.get('firstName'),
+            last_name: data.get('lastName'),
+            email: data.get('email'),
+            gender: data.get('gender'),
+            age: data.get('age')
+        }
+        console.log(update);
+        axios.post(`http://127.0.0.1:8000/api/update`, update)
+            .then(res => {
+                console.log(res);
+                // setUser(res.data)
+                getUserInfo()
+                setOpened(false)
+
+            }).catch(res => {
+                console.log(res);
+            })
+    }
+
     return (
         <div>
             {/* component */}
@@ -167,14 +189,16 @@ const Profile = () => {
                             <div className="px-6">
                                 <div className="flex flex-wrap justify-center">
                                     <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                                        <div className="relative">
-                                            <img onClick={handleClick} alt="..." src={imgUrl} className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
+                                        <div className="relative cursor-pointer">
+                                            <img onClick={handleClick} alt="..." src={imgUrl} className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px " />
                                             <input style={{ display: 'none' }} ref={inputRef} type="file" onChange={handleFileChange} />
+
                                         </div>
+
                                     </div>
                                     <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                         <div className="py-6 px-3 mt-32 sm:mt-0">
-                                            <button onClick={e => setOpened(true)} className="bg-blue-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                                            <button onClick={e => setOpened(true)} className="bg-red-700  active:bg-pink-600 uppercase text-white font-bold hover:shadow-2xl shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                                                 Edit
                                             </button>
                                             <Modal
@@ -183,10 +207,15 @@ const Profile = () => {
                                                 opened={opened}
                                                 onClose={() => setOpened(false)}
                                                 title="Edit Profile"
+                                                styles={{
+                                                    modal: {
+                                                        padding: 'var(--tw-p-3)',
+                                                        backgroundColor: 'rgb(17 24 39 / var(--tw-bg-opacity)) !important'
+                                                    }
+                                                }}
                                             >
-                                                <div className="w-full rounded-lg text-center">
-                                                    <form>
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.first_name} {valid?.errors?.last_name}</p>
+                                                <div className="w-full rounded-lg text-center bg-gray-900 text-white p-1 shadow-2xl">
+                                                    <form className='bg-gray-900 text-white' onSubmit={handleSubmit}>
                                                         <div className="flex justify-between">
                                                             <Input
                                                                 className="my-4 bg-slate-400"
@@ -203,7 +232,6 @@ const Profile = () => {
                                                                 defaultValue={user?.last_name}
                                                             />
                                                         </div>
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.email}</p>
                                                         <Input
                                                             className="my-4 bg-slate-400"
                                                             icon={<MdEmail />}
@@ -211,7 +239,6 @@ const Profile = () => {
                                                             name="email"
                                                             defaultValue={user?.email}
                                                         />
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.age}</p>
 
                                                         <NumberInput
                                                             className="my-4"
@@ -219,7 +246,6 @@ const Profile = () => {
                                                             placeholder="Your age"
                                                             name="age"
                                                         />
-                                                        <p className="text-start text-red-500 text-sm"> {valid?.errors?.gender}</p>
 
                                                         <Select
                                                             className="my-4"
@@ -248,10 +274,10 @@ const Profile = () => {
                                     <div className="w-full lg:w-4/12 px-4 lg:order-1">
                                         <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                             <div className="mr-4 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{Post.length}</span><span className="text-sm text-blueGray-400">Post</span>
+                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{Post?.length}</span><span className="text-sm text-blueGray-400">Post</span>
                                             </div>
                                             <div className="lg:mr-4 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{comment.length}</span><span className="text-sm text-blueGray-400">Comments</span>
+                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{comment?.length}</span><span className="text-sm text-blueGray-400">Comments</span>
                                             </div>
                                         </div>
                                     </div>
@@ -283,15 +309,14 @@ const Profile = () => {
                                                     <MovieCard
                                                         item={item}
                                                         isFav={isFav}
-                                                        setRender={setRender}
-                                                        
+                                                    // setRender={setRender}
+
                                                     />
                                                 </SwiperSlide>
                                             );
                                         })}
                                     </Swiper>
                                 </div>
-
                             </div>
                         </div>
                     </div>

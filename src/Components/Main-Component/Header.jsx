@@ -25,9 +25,9 @@ const Header = () => {
             display: isAuth() ? 'IPTV' : '',
             path: '/Iptv'
         },
-             {
+        {
             display: isAuth() ? user().first_name : 'Login',
-            path: isAuth() ? '/profile' : '/login'
+            path: isAuth() ? '/user' : '/login'
         },
 
     ];
