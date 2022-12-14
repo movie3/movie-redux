@@ -12,6 +12,8 @@ import { MdEmail, MdPerson } from 'react-icons/md';
 import { useDisclosure } from '@mantine/hooks';
 import { useNavigate } from 'react-router-dom';
 import { FiRefreshCcw } from 'react-icons/fi';
+import { Table } from '@mantine/core';
+
 
 //TODO: get user info 
 //TODO: get user fav 
@@ -31,7 +33,7 @@ const Profile = () => {
     const userAuth = useAuthUser()
     const [user, setUser] = useState()
     const [opened, setOpened] = useState(false);
-    const [comment, setComment] = useState(0)
+    const [comment, setComment] = useState()
     const [Post, setPost] = useState(0)
     let moviesArr = []
 
@@ -150,6 +152,40 @@ const Profile = () => {
                 console.log(res);
             })
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        // data.append('user_id', userAuth().id);
+        const update = {
+            user_id: userAuth().id,
+            first_name: data.get('firstName'),
+            last_name: data.get('lastName'),
+            email: data.get('email'),
+            gender: data.get('gender'),
+            age: data.get('age')
+        }
+        console.log(update);
+        axios.post(`http://127.0.0.1:8000/api/update`, update)
+            .then(res => {
+                console.log(res);
+                // setUser(res.data)
+                getUserInfo()
+                setOpened(false)
+
+            }).catch(res => {
+                console.log(res);
+            })
+    }
+
+    const elements = [
+        { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
+        { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
+        { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
+        { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
+        { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
+    ];
+
     return (
         <div>
             {/* component */}
@@ -167,10 +203,12 @@ const Profile = () => {
                             <div className="px-6">
                                 <div className="flex flex-wrap justify-center">
                                     <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                                        <div className="relative">
-                                            <img onClick={handleClick} alt="..." src={imgUrl} className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
+                                        <div className="relative cursor-pointer">
+                                            <img onClick={handleClick} alt="..." src={imgUrl} className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px " />
                                             <input style={{ display: 'none' }} ref={inputRef} type="file" onChange={handleFileChange} />
+
                                         </div>
+
                                     </div>
                                     <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                         <div className="py-6 px-3 mt-32 sm:mt-0">
@@ -183,9 +221,15 @@ const Profile = () => {
                                                 opened={opened}
                                                 onClose={() => setOpened(false)}
                                                 title="Edit Profile"
+                                                styles={{
+                                                    modal: {
+                                                        padding: 'var(--tw-p-3)',
+                                                        backgroundColor: 'rgb(17 24 39 / var(--tw-bg-opacity)) !important'
+                                                    }
+                                                }}
                                             >
-                                                <div className="w-full rounded-lg text-center">
-                                                    <form>
+                                                <div className="w-full rounded-lg text-center bg-gray-900 text-white p-1 shadow-2xl">
+                                                    <form className='bg-gray-900 text-white' onSubmit={handleSubmit}>
                                                         <p className="text-start text-red-500 text-sm"> {valid?.errors?.first_name} {valid?.errors?.last_name}</p>
                                                         <div className="flex justify-between">
                                                             <Input
@@ -248,10 +292,10 @@ const Profile = () => {
                                     <div className="w-full lg:w-4/12 px-4 lg:order-1">
                                         <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                             <div className="mr-4 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{Post.length}</span><span className="text-sm text-blueGray-400">Post</span>
+                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{Post?.length}</span><span className="text-sm text-blueGray-400">Post</span>
                                             </div>
                                             <div className="lg:mr-4 p-3 text-center">
-                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{comment.length}</span><span className="text-sm text-blueGray-400">Comments</span>
+                                                <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-300">{comment?.length}</span><span className="text-sm text-blueGray-400">Comments</span>
                                             </div>
                                         </div>
                                     </div>
@@ -283,15 +327,14 @@ const Profile = () => {
                                                     <MovieCard
                                                         item={item}
                                                         isFav={isFav}
-                                                        setRender={setRender}
-                                                        
+                                                    // setRender={setRender}
+
                                                     />
                                                 </SwiperSlide>
                                             );
                                         })}
                                     </Swiper>
                                 </div>
-
                             </div>
                         </div>
                     </div>
