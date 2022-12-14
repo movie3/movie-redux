@@ -30,16 +30,16 @@ export default function Feed() {
 
   return (
     <>
-      <PageHeader>
-        Feed
-      </PageHeader>
-      <div className="feed">
-        <div className="feedWrapper">
-          <Share posts={posts} setPosts={setPosts} />
-          {posts?.map((p) => (
-            <Post key={p.id} post={p} />
-          ))}
-        </div>
+    <PageHeader>
+        Post your feedback !
+    </PageHeader>
+    <div className="feed">
+      <div className="feedWrapper">
+        <Share posts={posts} setPosts={setPosts}/>
+        {posts?.map((p) => (
+          <Post key={p.id} post={p} />
+        ))}
+      </div>
       </div>
     </>
   );

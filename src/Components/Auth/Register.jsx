@@ -140,7 +140,6 @@ const Register = () => {
               <Button
                 type="submit"
                 className="bg-subMain transitions hover:bg-main rounded-lg w-1/2 my-3"
-                rightIcon={<FiLogIn />}
               >
                 Signup
               </Button>
@@ -148,9 +147,9 @@ const Register = () => {
           </form>
 
           <p className="text-center text-white">
-            Have an account?{" "}
+           
             <Link to="/login" className="text-dryGray font-semibold ml-2">
-              Login
+              Have an account?
             </Link>
           </p>
         </div>
