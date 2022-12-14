@@ -22,12 +22,12 @@ const Header = () => {
             path: '/movie'
         },
         {
+            display: isAuth() ? 'IPTV' : '',
+            path: '/Iptv'
+        },
+             {
             display: isAuth() ? user().first_name : 'Login',
             path: isAuth() ? '/profile' : '/login'
-        },
-        {
-            display: isAuth() ? 'Iptv' : '',
-            path: '/Iptv'
         },
 
     ];
