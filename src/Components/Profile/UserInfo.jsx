@@ -48,10 +48,9 @@ const UserInfo = () => {
         <>
             <PageHeader> Welcome {user().first_name}  {user().last_name}</PageHeader>
             <SideBar>
-                <div class="flex items-center  w-full">
-
+                <div class="flex items-center w-full">
                     <div class="w-full mx-8">
-                        <div class="bg-light shadow-xl rounded-lg py-3">
+                        <div class="bg-light shadow-xl rounded-lg ">
                             <div class="photo-wrapper p-2">
                                 <img class="w-32 h-32 rounded-full mx-auto" src="https://static.vecteezy.com/system/resources/previews/004/476/155/original/young-man-with-beard-avatar-character-icon-free-vector.jpg" alt="John Doe" />
                             </div>

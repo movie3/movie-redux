@@ -25,7 +25,7 @@ const HeroSlide = () => {
             try {
                 // const response = await tmdbApi.getMoviesList(movieType.popular, {params});
                 // console.log(getPopularMovie());
-                const response = await axios.get(`${getPopularMovie()}`, {
+                const response = await axios.get(`${getPopularMovie(3)}`, {
                   headers: { 
                     'Content-Type': 'application/json'
                   }

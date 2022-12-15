@@ -59,13 +59,13 @@ function SideBar({ children }) {
   //TODO: profile for admin and user
   return (
     
-    <div className="xl:grid grid-cols-8 gap-10 items-start md:py-12 py-6  ">
-      <div className="col-span-2 sticky bg-dark p-6 rounded-md xl:mb-0 mb-5 border shadow-white w-10/12">
+    <div className="xl:grid grid-cols-8 gap-10 items-start md:py-6 py-6  ">
+      <div className="col-span-2 sticky bg-dark rounded-md xl:mb-0 mb-5 border shadow-white w-10/12">
         {
           // SideBar Links
           SideLinks.map((link, index) => (
             <NavLink to={link.link} key={index} className={Hover}>
-              <link.icon /> <p className="m-0">{link.name}</p>
+              <link.icon /> <p className="m-0 text-xl">{link.name}</p>
             </NavLink>
           ))
         }
