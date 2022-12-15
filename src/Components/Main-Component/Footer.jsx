@@ -19,11 +19,9 @@ const Footer = () => {
       <div className="footer__content container ">
         <div className="footer__content__logo mb-3">
           <div className="logo  ">
-          <div className="logo">
-                    <h1>B</h1>
-                    <img src={logo} alt="" />
-                    <Link to="/">X OFFICE</Link>
-                </div>
+            B
+            <img src={logo} alt="" />
+            <Link to="/">X OFFICE</Link>
           </div>
         </div>
         <div className="footer__content__menus pl-16 ">
@@ -31,9 +29,9 @@ const Footer = () => {
             <Link to="/">Home</Link>
             <Link to="/contact">Contact us</Link>
             {isAuth() ? (
-              <Link to="/feed">Feedback</Link>
+              <Link to="/feed">Community</Link>
             ) : (
-              <Link to="/login">Feedback</Link>
+              <Link to="/login">Community</Link>
 
             )}
             <Link to="/about">About</Link>

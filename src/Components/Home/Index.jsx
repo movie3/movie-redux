@@ -7,6 +7,7 @@ import Slider from "./Slider";
 import Subscribe from "./Subscribe";
 
 const Home = () => {
+
   const [movies, setMovies] = useState();
   useEffect(() => {
     // axios.get(getPopularMovie()).then(res => setMovies(res.data.results))
@@ -18,6 +19,7 @@ const Home = () => {
   // if (movies == null) {
   //   return <h1>loading..... </h1>
   // }
+
   return (
     <>
       <Hero />

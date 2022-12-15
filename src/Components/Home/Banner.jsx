@@ -22,6 +22,7 @@ const Banner = () => {
             <div class="text-center text-white px-6 md:px-12">
               <h1 class="text-5xl font-bold mt-0 mb-6"></h1>
               <h3 class="text-3xl font-bold mb-8"></h3>
+              {/* check if user is auth */}
               {isAuth()?(
                 <Link to="/Iptv">
                 <button

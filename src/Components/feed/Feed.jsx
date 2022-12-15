@@ -8,32 +8,30 @@ import { useEffect, useState } from "react";
 
 export default function Feed() {
 
-  const [posts , setPosts] = useState([]);
-  const [render , setRender] =useState(false);
+  const [posts, setPosts] = useState([]);
+  const [render, setRender] = useState(false);
 
   async function getPosts() {
-    let response = await axios.get('http://127.0.0.1:8000/api/getposts');
+    let response = await axios.get('http://127.0.0.1:8000/api/getApprovedPosts');
     // console.log(response.data);
     setPosts(response.data);
   }
-  useEffect(()=>{
-    // console.log("hello");
+  useEffect(() => {
     getPosts();
-  },[])
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-  });
-  },[])
+    });
+  }, [])
 
-  // console.log(render);
-  
+
   return (
     <>
     <PageHeader>
-        Feed
+        Post your feedback !
     </PageHeader>
     <div className="feed">
       <div className="feedWrapper">
@@ -43,6 +41,6 @@ export default function Feed() {
         ))}
       </div>
       </div>
-      </>
+    </>
   );
 }

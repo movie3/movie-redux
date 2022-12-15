@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiLogIn } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-// import { Input } from "../Main-Component/UsedInputs";
 import { useDisclosure } from "@mantine/hooks";
 import img from "../img/bg-c.jpg";
 import {
@@ -15,7 +14,7 @@ import {
 import { Input } from "@mantine/core";
 import { IconGenderBigender } from "@tabler/icons";
 import { GoogleIcon } from "./GoogleIcon";
-import { MdAir, MdEmail, MdPassword, MdPerson } from "react-icons/md";
+import {  MdEmail, MdPassword, MdPerson } from "react-icons/md";
 import { FcCalendar } from "react-icons/fc";
 import axios from "axios";
 import { useSignIn } from "react-auth-kit";
@@ -32,7 +31,6 @@ const Register = () => {
   });
   },[])
 
-  //TODO: validate password
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,6 +43,7 @@ const Register = () => {
       gender: data.get('gender'),
       age: data.get('age')
     }
+    
     axios.post('http://127.0.0.1:8000/api/register', signupData).then(res => {
       console.log(res.data);
       if (signIn({
@@ -141,7 +140,6 @@ const Register = () => {
               <Button
                 type="submit"
                 className="bg-subMain transitions hover:bg-main rounded-lg w-1/2 my-3"
-                rightIcon={<FiLogIn />}
               >
                 Signup
               </Button>
@@ -149,9 +147,9 @@ const Register = () => {
           </form>
 
           <p className="text-center text-white">
-            Have an account?{" "}
+           
             <Link to="/login" className="text-dryGray font-semibold ml-2">
-              Login
+              Have an account?
             </Link>
           </p>
         </div>
