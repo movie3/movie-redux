@@ -12,7 +12,7 @@ export default function Feed() {
   const [render, setRender] = useState(false);
 
   async function getPosts() {
-    let response = await axios.get('http://127.0.0.1:8000/api/getposts');
+    let response = await axios.get('http://127.0.0.1:8000/api/getApprovedPosts');
     // console.log(response.data);
     setPosts(response.data);
   }

@@ -29,9 +29,9 @@ const Footer = () => {
             <Link to="/">Home</Link>
             <Link to="/contact">Contact us</Link>
             {isAuth() ? (
-              <Link to="/feed">Feedback</Link>
+              <Link to="/feed">Community</Link>
             ) : (
-              <Link to="/login">Feedback</Link>
+              <Link to="/login">Community</Link>
 
             )}
             <Link to="/about">About</Link>
